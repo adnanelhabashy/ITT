@@ -1,0 +1,8 @@
+{
+  "name": "ITT",
+  "app_id": "2a674064",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
