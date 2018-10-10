@@ -13,8 +13,8 @@ import { Registration2Page } from '../pages/registration2/registration2';
 import { Registration3Page } from '../pages/registration3/registration3';
 import { Registration4Page } from '../pages/registration4/registration4';
 import {MobileVerificationPage} from '../pages/mobile-verification/mobile-verification';
-import { ApiProvider } from '../providers/api/api';
-import { TruckDataProvider } from '../providers/truck-data/truck-data';
+import { api } from '../providers/api/api';
+import { TruckData } from '../providers/truck-data/truck-data';
 
 @NgModule({
   declarations: [
@@ -48,8 +48,8 @@ import { TruckDataProvider } from '../providers/truck-data/truck-data';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ApiProvider,
-    TruckDataProvider
+    api,
+    TruckData
   ]
 })
 export class AppModule {}

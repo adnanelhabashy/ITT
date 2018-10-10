@@ -1,17 +1,64 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient,HttpHeaders } from "@angular/common/http";
 
-/*
-  Generated class for the TruckDataProvider provider.
+import { api } from "../api/api";
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+
+
 @Injectable()
-export class TruckDataProvider {
+export class TruckData {
+  _favorites: string[] = [];
+  HAS_LOGGED_IN = 'hasLoggedIn';
+  HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
 
-  constructor(public http: HttpClient) {
-    console.log('Hello TruckDataProvider Provider');
+  constructor(
+    public _http:HttpClient
+  ) { }
+
+  getTruckList():Observable<any>
+  {
+    var URL = api.ApiBaseURL + "TruckList";
+    var headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/json');
+    headers.append('content-type','application/json');
+    return this._http.get(URL,{headers:headers});
   }
 
+  getDefaultTruck():Observable<any>
+  {
+    var URL = api.ApiBaseURL + "DefaultTruck";
+    var headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/json');
+    headers.append('content-type','application/json');
+    return this._http.get(URL,{headers:headers});
+  }
+
+  setDefaultTruck(Truck:any):Observable<any>
+  {
+    var URL = api.ApiBaseURL + "SetDefaultTruck";
+    var headers = new HttpHeaders();   
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/json');
+    headers.append('Access-Control-Allow-Headers','*');
+    headers.append('content-type','application/json');
+    return this._http.post(URL,Truck,{headers:headers});
+  }
+
+  addTruck(Truck:any)
+  {
+    var URL = api.ApiBaseURL + "AddTruck";
+    var headers = new HttpHeaders();   
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/json');
+    headers.append('Access-Control-Allow-Headers','*');
+    headers.append('content-type','application/json');
+    return this._http.post(URL,Truck,{headers:headers});
+  }
 }
